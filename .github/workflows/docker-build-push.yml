@@ -5,6 +5,9 @@ on:
     branches:
       - feature/ECS-cluster-module  
 
+permissions:
+  id-token: write
+
 jobs:
   build-and-push:
     name: Build and Push Docker Image
@@ -44,7 +47,7 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::156041426734:role/githubactionsrole
+          role-to-assume: arn:aws:iam::156041426734:role/ActionRole
           aws-region: us-east-2
 
       - name: Initialize Terraform
