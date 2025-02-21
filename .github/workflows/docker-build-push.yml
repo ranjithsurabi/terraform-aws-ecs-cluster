@@ -45,6 +45,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::156041426734:role/AWSRole
+          aws-region: us-east-2
 
       - name: Initialize Terraform
         run: terraform init
