@@ -24,3 +24,10 @@ data "aws_subnets" "public" {
 data "aws_iam_role" "ecs_task_execution_role" {
   name = "AWSServiceRoleForECS"
 }
+
+data "aws_security_group" "default" {
+  filter {
+    name   = "group-name"
+    values = ["default"]
+  }
+}
