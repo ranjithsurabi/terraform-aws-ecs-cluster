@@ -58,3 +58,4 @@ jobs:
       - name: Apply Terraform Changes
         run: terraform apply -auto-approve
         working-directory: app/iac
+        
