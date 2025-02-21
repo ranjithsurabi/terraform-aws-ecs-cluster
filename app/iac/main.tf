@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket         = "terraformstatefiles4"
+    key            = "/ecs-cluster-module/${var.env}/${var.appname}.tfstate"
+    region         = var.region
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
+  }
+}
+
 module "ecs_cluster" {
   source                             = "../../ecs-cluster-module"
   cluster_name                       = var.cluster_name
