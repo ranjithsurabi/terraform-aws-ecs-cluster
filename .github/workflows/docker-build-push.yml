@@ -25,11 +25,11 @@ jobs:
            echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
 
       - name: Debug - Check Dockerfile Location
-        run: ls -l ./app/catgifs
+        run: ls -l ./app/cat-gifs
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest -f ./app/catgifs/Dockerfile ./app/catgifs
+          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest -f ./app/cat-gifs/Dockerfile ./app/cat-gifs
       - name: Push Docker Image to Artifactory
         run: |
           docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
