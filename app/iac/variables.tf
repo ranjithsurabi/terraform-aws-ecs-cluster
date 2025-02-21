@@ -49,11 +49,7 @@ variable "region" {
 variable "task_family" {
   description = "Task family name"
   type        = string
-}
-
-variable "execution_role_arn" {
-  description = "IAM role for ECS execution"
-  type        = string
+  default     = ""
 }
 
 variable "cpu" {
@@ -71,16 +67,19 @@ variable "memory" {
 variable "container_name" {
   description = "Name of the container"
   type        = string
+  default     = ""
 }
 
 variable "container_image" {
   description = "Docker image URL"
   type        = string
+  default     = ""
 }
 
 variable "container_port" {
   description = "Port exposed by the container"
   type        = number
+  default     = 0
 }
 
 variable "environment_variables" {
