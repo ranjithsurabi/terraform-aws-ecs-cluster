@@ -55,10 +55,10 @@ jobs:
         working-directory: app/iac
 
       - name: Run Terraform Plan
-        run: terraform plan
+        run: terraform plan -var-file=dev.tfvars
         working-directory: app/iac
 
       - name: Apply Terraform Changes
-        run: terraform apply -auto-approve
+        run: terraform apply -var-file=dev.tfvars -auto-approve
         working-directory: app/iac
 
