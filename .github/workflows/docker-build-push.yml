@@ -23,16 +23,18 @@ jobs:
       - name: Debug Artifactory URL
         run: | 
            echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
+           
       - name: Debug - Check Dockerfile Location
         run: ls -R
 
       - name: Build Docker Image
         run: |
-          docker build -t https://ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest ./app/catgifs
+          docker build -t ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest ./app/catgifs
 
-  #     - name: Push Docker Image to Artifactory
-  #       run: |
-  #         docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
+      - name: Push Docker Image to Artifactory
+        run: |
+          docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
+
   # terraform-deploy:
   #   name: Terraform Init, Plan, Apply
   #   runs-on: ubuntu-latest
