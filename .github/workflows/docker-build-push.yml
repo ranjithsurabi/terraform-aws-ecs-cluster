@@ -17,22 +17,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Log in to Artifactory
-        run: echo "${{ secrets.ARTIFACTORY_PASSWORD }}" | docker login ${{ secrets.ARTIFACTORY_URL }} -u ${{ secrets.ARTIFACTORY_USERNAME }} --password-stdin
-      
-      - name: Debug Artifactory URL
-        run: | 
-           echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
-
       - name: Debug - Check Dockerfile Location
         run: ls -l ./app/cat-gifs
 
-      - name: Build Docker Image
-        run: |
-          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest -f ./app/cat-gifs/Dockerfile ./app/cat-gifs
       - name: Push Docker Image to Artifactory
         run: |
           echo "${{ secrets.ARTIFACTORY_PASSWORD }}" | docker login ${{ secrets.ARTIFACTORY_URL }} -u ${{ secrets.ARTIFACTORY_USERNAME }} --password-stdin
+          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest -f ./app/cat-gifs/Dockerfile
           docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
 
   # terraform-deploy:
