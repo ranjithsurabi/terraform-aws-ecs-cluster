@@ -44,3 +44,17 @@ resource "aws_ecs_task_definition" "this" {
     }
   ])
 }
+
+resource "aws_ecs_service" "this" {
+  name            = "sample"
+  cluster         = aws_ecs_cluster.this.id
+  task_definition = aws_ecs_task_definition.this.arn
+  desired_count   = 2
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = data.aws_subnets.public
+    security_groups  = [aws_security_group.default.id]
+    assign_public_ip = true
+  }
+}
