@@ -26,9 +26,9 @@ jobs:
       - name: Debug - Check Dockerfile Location
         run: ls -R
 
-      # - name: Build Docker Image
-      #   run: |
-      #     docker build -t https://ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest .
+      - name: Build Docker Image
+        run: |
+          docker build -t https://ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest ./app/catgifs
 
   #     - name: Push Docker Image to Artifactory
   #       run: |
