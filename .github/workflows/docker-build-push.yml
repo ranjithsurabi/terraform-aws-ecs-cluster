@@ -22,11 +22,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest .
+          docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest .
 
       - name: Push Docker Image to Artifactory
         run: |
-          docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
+          docker push ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest
   terraform-deploy:
     name: Terraform Init, Plan, Apply
     runs-on: ubuntu-latest
