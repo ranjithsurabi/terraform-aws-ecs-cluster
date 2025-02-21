@@ -23,7 +23,7 @@ jobs:
       - name: Push Docker Image to Artifactory
         run: |
           echo "${{ secrets.ARTIFACTORY_PASSWORD }}" | docker login ${{ secrets.ARTIFACTORY_URL }} -u ${{ secrets.ARTIFACTORY_USERNAME }} --password-stdin
-          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest -f ./app/cat-gifs/Dockerfile
+          docker build -t ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest ./app/cat-gifs
           docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
 
   # terraform-deploy:
