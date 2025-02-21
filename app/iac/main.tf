@@ -6,7 +6,8 @@ module "ecs_cluster" {
   default_capacity_provider_strategy = var.default_capacity_provider_strategy
 
   # Task Definition Parameters
-  task_family           = var.task_family
+
+
   execution_role_arn    = data.aws_iam_role.ecs_execution_role.arn
   cpu                   = var.cpu
   memory                = var.memory
