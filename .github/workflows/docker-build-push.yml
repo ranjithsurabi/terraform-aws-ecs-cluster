@@ -24,9 +24,9 @@ jobs:
         run: | 
            echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
 
-  #     - name: Build Docker Image
-  #       run: |
-  #         docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest .
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest ./app/catgifs
 
   #     - name: Push Docker Image to Artifactory
   #       run: |
