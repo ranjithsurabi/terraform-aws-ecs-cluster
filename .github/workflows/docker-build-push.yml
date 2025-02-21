@@ -19,36 +19,40 @@ jobs:
 
       - name: Log in to Artifactory
         run: echo "${{ secrets.ARTIFACTORY_PASSWORD }}" | docker login ${{ secrets.ARTIFACTORY_URL }} -u ${{ secrets.ARTIFACTORY_USERNAME }} --password-stdin
+      
+      - name: Debug Artifactory URL
+        run: | 
+           echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
 
-      - name: Build Docker Image
-        run: |
-          docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest .
+  #     - name: Build Docker Image
+  #       run: |
+  #         docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest .
 
-      - name: Push Docker Image to Artifactory
-        run: |
-          docker push ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest
-  terraform-deploy:
-    name: Terraform Init, Plan, Apply
-    runs-on: ubuntu-latest
-    needs: build-and-push 
+  #     - name: Push Docker Image to Artifactory
+  #       run: |
+  #         docker push ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest
+  # terraform-deploy:
+  #   name: Terraform Init, Plan, Apply
+  #   runs-on: ubuntu-latest
+  #   needs: build-and-push 
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.5.6  
+  #     - name: Set up Terraform
+  #       uses: hashicorp/setup-terraform@v2
+  #       with:
+  #         terraform_version: 1.5.6  
 
-      - name: Initialize Terraform
-        run: terraform init
-        working-directory: apps/IAC
+  #     - name: Initialize Terraform
+  #       run: terraform init
+  #       working-directory: apps/IAC
 
-      - name: Run Terraform Plan
-        run: terraform plan
-        working-directory: apps/IAC
+  #     - name: Run Terraform Plan
+  #       run: terraform plan
+  #       working-directory: apps/IAC
 
-      - name: Apply Terraform Changes
-        run: terraform apply -auto-approve
-        working-directory: apps/IAC
+  #     - name: Apply Terraform Changes
+  #       run: terraform apply -auto-approve
+  #       working-directory: apps/IAC
