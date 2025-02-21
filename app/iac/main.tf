@@ -6,13 +6,13 @@ module "ecs_cluster" {
   default_capacity_provider_strategy = var.default_capacity_provider_strategy
 
   # Task Definition Parameters
-
-
-  execution_role_arn    = data.aws_iam_role.ecs_execution_role.arn
-  cpu                   = var.cpu
-  memory                = var.memory
-  container_name        = var.container_name
-  container_image       = var.container_image
-  container_port        = var.container_port
-  environment_variables = var.environment_variables
+  task_family     = "cat-gif-task"
+  cpu             = "256"
+  memory          = "512"
+  container_name  = "cat-gif-container"
+  container_image = "ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest"
+  container_port  = 5000
+  environment_variables = [
+    { name = "PORT", value = "5000" }
+  ]
 }
