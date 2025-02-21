@@ -1,10 +1,18 @@
-FROM alpine:latest
-RUN apk add --update py2-pip
-COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
-COPY app.py /usr/src/app/
-COPY templates/index.html /usr/src/app/templates/
-COPY static/styles/main.css /usr/src/app/static/styles/
-COPY static/images/* /usr/src/app/static/images/
+# Use a lightweight Python image
+FROM python:3.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy app files
+COPY app.py .
+COPY smiley.gif .
+
+# Install Flask
+RUN pip install Flask
+
+# Expose port 5000
 EXPOSE 5000
-CMD ["python", "/usr/src/app/app.py"]
+
+# Run the app
+CMD ["python", "app.py"]
