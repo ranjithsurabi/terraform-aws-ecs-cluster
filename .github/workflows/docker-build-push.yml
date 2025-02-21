@@ -3,7 +3,7 @@ name: Build and Push Docker Image to Artifactory
 on:
   push:
     branches:
-      - main  
+      - feature/ECS-cluster-module  
 
 jobs:
   build-and-push:
@@ -24,13 +24,13 @@ jobs:
         run: | 
            echo "Using Artifactory URL: '${{ secrets.ARTIFACTORY_URL }}'"
 
-  #     - name: Build Docker Image
-  #       run: |
-  #         docker build -t ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest .
+      - name: Build Docker Image
+        run: |
+          docker build -t https://ranjithsurabi.jfrog.io/artifactory/docker-images/cat-gif:latest .
 
   #     - name: Push Docker Image to Artifactory
   #       run: |
-  #         docker push ${{ secrets.ARTIFACTORY_URL }}cat-gif:latest
+  #         docker push ${{ secrets.ARTIFACTORY_URL }}/cat-gif:latest
   # terraform-deploy:
   #   name: Terraform Init, Plan, Apply
   #   runs-on: ubuntu-latest
