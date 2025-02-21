@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket         = "terraformstatefiles4"
+    key            = "/ecs-cluster-module/${var.env}/${var.appname}.tfstate"
+    region         = var.region
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
+  }
+}
+
 resource "aws_s3_bucket" "this" {
   bucket        = "${var.bucket_name}.${data.aws_region.region.name}.${data.aws_ssm_parameter.domain.value}"
   force_destroy = var.force_destroy

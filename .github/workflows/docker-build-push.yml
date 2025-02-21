@@ -59,6 +59,6 @@ jobs:
         working-directory: app/iac
 
       - name: Apply Terraform Changes
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve
         working-directory: app/iac
 
