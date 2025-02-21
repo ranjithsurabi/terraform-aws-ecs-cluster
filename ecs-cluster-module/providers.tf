@@ -8,14 +8,6 @@ terraform {
   required_version = "~> 1.5.6"
 }
 
-terraform {
-  backend "s3" {
-    region         = var.region
-    encrypt        = true
-    dynamodb_table = "terraform-state-lock"
-  }
-}
-
 provider "aws" {
   region = var.region
   default_tags {

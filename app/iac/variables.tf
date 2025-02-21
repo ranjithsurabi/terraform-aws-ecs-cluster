@@ -30,7 +30,6 @@ variable "appname" {
   description = "Name of the Application"
 }
 variable "env" {
-  default     = "dev"
   description = "Environment for deployment"
 }
 variable "domain" {
