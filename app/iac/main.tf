@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "terraformstatefiles4"
-    key            = "/ecs-cluster-module/${var.env}/${var.appname}.tfstate"
+    key            = "/ecs-cluster-module/dev/appname.tfstate" #this will not be hardcode just for test
     region         = var.region
     encrypt        = true
     dynamodb_table = "terraform-state-lock"
