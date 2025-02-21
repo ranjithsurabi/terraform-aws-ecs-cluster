@@ -57,10 +57,10 @@ variable "task_family" {
   type        = string
 }
 
-variable "execution_role_arn" {
-  description = "IAM role for ECS execution"
-  type        = string
-}
+# variable "execution_role_arn" {
+#   description = "IAM role for ECS execution"
+#   type        = string
+# }
 
 variable "cpu" {
   description = "CPU units for the task"
