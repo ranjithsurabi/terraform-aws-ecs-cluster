@@ -1,6 +1,3 @@
-variable "env" {
-  default     = "prod "
-  description = "Environment for deployment"
-}
+env = "prod"
 
 # we can env specific variables
